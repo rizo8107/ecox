@@ -11,11 +11,11 @@ const createLogo = (letter: string, color: string) => <div className={`w-12 h-12
 
 // --- COMPETITORS DATA ---
 const competitorsData: Competitor[] = [
-    { name: 'Tata Wiron', logo: createLogo('T', 'bg-blue-800'), overview: 'Market leader in GI wires, known for quality and reach.', strengths: ['Strong brand trust', 'Extensive distribution network'], weaknesses: ['Higher price point', 'Less flexible on custom orders'], marketPresence: 'Very High', pricing: '₹80-100', differentiation: 'EcoX competes on specialized coatings and agile manufacturing for custom needs.' },
-    { name: 'JSW Steel', logo: createLogo('J', 'bg-red-700'), overview: 'Major steel producer with a strong GI wire segment.', strengths: ['Integrated steel production', 'Consistent quality'], weaknesses: ['Primarily focused on large-volume orders'], marketPresence: 'High', pricing: '₹75-95', differentiation: 'EcoX offers greater customization for small to mid-sized projects.' },
-    { name: 'Systematic Group', logo: createLogo('S', 'bg-teal-600'), overview: 'Specializes in fencing and a variety of GI wires.', strengths: ['30+ years of experience', 'Focus on corrosion resistance'], weaknesses: ['Primarily a regional player', 'Weaker brand recognition nationally'], marketPresence: 'Medium', pricing: '₹65-85', differentiation: 'EcoX innovates with advanced Zn-Al-Mg coatings for superior durability.' },
-    { name: 'A-1 Fence', logo: createLogo('A', 'bg-gray-600'), overview: 'Leading manufacturer of fencing wire and related products.', strengths: ['Specialized in security fencing', 'Wide range of fencing solutions'], weaknesses: ['Less focus on industrial-use GI wires'], marketPresence: 'Medium', pricing: '₹70-90', differentiation: 'EcoX provides higher tensile strength GI wires suitable for industrial applications beyond fencing.' },
-    { name: 'Hindustan Zinc', logo: createLogo('H', 'bg-green-700'), overview: 'Leading zinc producer, supplies raw material and finished wires.', strengths: ['High-quality zinc coating', 'Expertise in anti-corrosion'], weaknesses: ['More focused on B2B supply', 'Limited direct-to-consumer presence'], marketPresence: 'High (Supply Chain)', pricing: '₹85-105', differentiation: 'EcoX offers a finished, customized product with a focus on end-user application and service.' },
+    { name: 'Tata Wiron', logo: createLogo('T', 'bg-blue-800'), overview: 'Market leader in GI wires, known for quality and reach.', strengths: ['Strong brand trust', 'Extensive distribution network'], weaknesses: ['Higher price point', 'Less flexible on custom orders'], marketPresence: 'Very High', pricing: '₹80-100', differentiation: 'EcoX competes on specialized coatings and agile manufacturing for custom needs.', zincCoating: 'Up to 275 GSM', tensileStrength: '350-550 MPa', customizationOptions: ['Variable coil weight', 'Custom diameters'] },
+    { name: 'JSW Steel', logo: createLogo('J', 'bg-red-700'), overview: 'Major steel producer with a strong GI wire segment.', strengths: ['Integrated steel production', 'Consistent quality'], weaknesses: ['Primarily focused on large-volume orders'], marketPresence: 'High', pricing: '₹75-95', differentiation: 'EcoX offers greater customization for small to mid-sized projects.', zincCoating: '90-200 GSM', tensileStrength: '400-600 MPa', customizationOptions: ['Bulk order discounts', 'Standard sizes only'] },
+    { name: 'Systematic Group', logo: createLogo('S', 'bg-teal-600'), overview: 'Specializes in fencing and a variety of GI wires.', strengths: ['30+ years of experience', 'Focus on corrosion resistance'], weaknesses: ['Primarily a regional player', 'Weaker brand recognition nationally'], marketPresence: 'Medium', pricing: '₹65-85', differentiation: 'EcoX innovates with advanced Zn-Al-Mg coatings for superior durability.', zincCoating: '60-100 GSM', tensileStrength: '300-500 MPa', customizationOptions: ['Fencing-specific gauges', 'Barbed wire options'] },
+    { name: 'A-1 Fence', logo: createLogo('A', 'bg-gray-600'), overview: 'Leading manufacturer of fencing wire and related products.', strengths: ['Specialized in security fencing', 'Wide range of fencing solutions'], weaknesses: ['Less focus on industrial-use GI wires'], marketPresence: 'Medium', pricing: '₹70-90', differentiation: 'EcoX provides higher tensile strength GI wires suitable for industrial applications beyond fencing.', zincCoating: 'Up to 240 GSM', tensileStrength: '500-700 MPa', customizationOptions: ['Security coatings', 'Concertina coils'] },
+    { name: 'Hindustan Zinc', logo: createLogo('H', 'bg-green-700'), overview: 'Leading zinc producer, supplies raw material and finished wires.', strengths: ['High-quality zinc coating', 'Expertise in anti-corrosion'], weaknesses: ['More focused on B2B supply', 'Limited direct-to-consumer presence'], marketPresence: 'High (Supply Chain)', pricing: '₹85-105', differentiation: 'EcoX offers a finished, customized product with a focus on end-user application and service.', zincCoating: '200-300 GSM (Jumbo)', tensileStrength: 'N/A (Raw Material)', customizationOptions: ['Alloy blending', 'Custom ingots'] },
 ];
 
 // --- BUDGET & CAMPAIGN DATA ---
@@ -131,28 +131,27 @@ export const SLIDES_DATA: Slide[] = [
     id: 'competitors',
     title: 'Who Are Our Competitors?',
     content: (
-        <div className="space-y-4">
-            <p>We operate in a competitive landscape against established manufacturers. EcoX differentiates through eco-innovation and customization, while competitors often lead in distribution and brand recall.</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-4">
-                {competitorsData.map(c => (
-                    <div key={c.name} className="bg-white dark:bg-slate-800/50 rounded-lg shadow-md p-4 flex flex-col ring-1 ring-slate-900/5 hover:ring-green-500/50 transition-shadow duration-300">
-                        <div className="flex items-center gap-4 mb-3">
-                            {c.logo}
-                            <h4 className="font-bold text-lg text-slate-800 dark:text-slate-100">{c.name}</h4>
+        <div className="space-y-3">
+            <p className="text-sm md:text-base">A focused look at key players in the GI wire market. EcoX stands out through superior coatings and customization.</p>
+            <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+                {competitorsData.map((competitor) => (
+                    <div key={competitor.name} className="bg-white dark:bg-slate-900 p-4 rounded-lg shadow-md flex-1 flex flex-col">
+                        <div className="flex items-center mb-3">
+                            {competitor.logo}
+                            <h4 className="ml-3 font-bold text-lg text-slate-900 dark:text-slate-100">{competitor.name}</h4>
                         </div>
-                        <p className="text-sm text-slate-500 dark:text-slate-400 mb-4 grow">{c.overview}</p>
-                        <div className="text-sm space-y-2 mb-4">
-                            <BulletList items={c.strengths} icon={<CheckCircleIcon />} />
-                            <BulletList items={c.weaknesses} icon={<XCircleIcon />} />
+                        <p className="text-xs text-slate-600 dark:text-slate-400 mb-3 flex-grow">{competitor.overview}</p>
+                        <div className="text-xs space-y-2 font-mono">
+                            <div title="Zinc Coating (Grams per Square Meter)"><strong className="font-sans font-semibold">Zinc:</strong> {competitor.zincCoating}</div>
+                            <div title="Tensile Strength (Megapascals)"><strong className="font-sans font-semibold">Strength:</strong> {competitor.tensileStrength}</div>
+                            <div><strong className="font-sans font-semibold">Pricing:</strong> {competitor.pricing}/kg</div>
                         </div>
-                        <div className="mt-auto pt-3 border-t border-slate-200 dark:border-slate-700 text-xs text-center font-semibold text-slate-700 dark:text-slate-300">
-                            Pricing: {c.pricing}/kg
+                        <div className="mt-3 pt-3 border-t border-slate-200 dark:border-slate-700">
+                            <p className="text-xs text-slate-600 dark:text-slate-400"><strong className="font-semibold">Differentiation:</strong> {competitor.differentiation}</p>
                         </div>
                     </div>
                 ))}
             </div>
-            <h4 className="text-lg font-semibold pt-4">Competitive Insights:</h4>
-            <p>EcoX trails in scale but excels in niche eco-innovations. Our opportunity is to capture share from mid-tier players by focusing on customization and sustainability.</p>
         </div>
     )
   },

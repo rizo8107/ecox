@@ -21,6 +21,9 @@ export interface Competitor {
     marketPresence: string;
     pricing: string;
     differentiation: string;
+    zincCoating: string;
+    tensileStrength: string;
+    customizationOptions: string[];
 }
 
 export interface PieChartSegment {
